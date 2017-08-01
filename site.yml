@@ -1,0 +1,24 @@
+---
+# Deploy the application stack 
+
+- name: do common config stuffs to all nodes
+  hosts: allservers
+  remote_user: root
+
+  roles:
+    -common
+
+- name: configure the webservers and deploy the application
+  hosts: webservers
+  remote_user: root
+
+  roles:
+    -web
+
+- name: deploy the db servers and do some db configuration
+  hosts: dbservers
+  remote_user: root
+  
+  roles:
+    - db
+

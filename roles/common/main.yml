@@ -1,0 +1,10 @@
+---
+# Playbook for plays to be run on all hosts
+
+- name: Install common dependencies
+  yum: name={{ item }} state=installed
+  with_items:
+   - libselinux-python
+   - libsemanage-python
+   - firewalld
+
