@@ -1,0 +1,19 @@
+---
+# Playbook for plays to be run on all hosts
+
+- name: Update all packages
+  yum: 
+    name: '*'
+    state: latest
+
+- name: Install ntp
+  yum: name=ntp state=present
+  tags: ntp
+
+- name: Install firewalld and SELinux tools
+  yum: name={{ item }} state=present
+  with_items:
+   - libselinux-python
+   - libsemanage-python
+   - firewalld
+
