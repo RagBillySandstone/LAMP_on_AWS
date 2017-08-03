@@ -30,10 +30,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     aws.secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
 
     # Specify default AWS key pair
-    aws.keypair_name = 'aws_rsa'
+    aws.keypair_name = 'my_CentOS_key'
 
     # Specify default region and default AMI ID
-    aws.region = 'us-west-2'
+    aws.region = 'us-east-2'
   end # config.vm.provider 'aws'
 
   # Loop through YAML file and set per-instance information
@@ -45,7 +45,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       # Set per-instance provider configuration/overrides
       srv.vm.provider 'aws' do |aws, override|
-        override.ssh.private_key_path = '~/.ssh/aws_rsa'
+        override.ssh.private_key_path = '~/.ssh/my_CentOS_key.pem'
         override.ssh.username = instance['user']
         aws.instance_type = instance['type']
         aws.ami = instance['ami']
