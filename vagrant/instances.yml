@@ -1,0 +1,13 @@
+---
+- name: "webserver"
+  type: "t2.micro"
+  # Red Hat Enterprise Linux version 7.3 (HVM), EBS General Purpose (SSD)
+  ami: "ami-11aa8c74"
+  user: "ec2-user"
+
+
+- name: "dbserver"
+  type: "t2.micro"
+  # Red Hat Enterprise Linux version 7.3 (HVM), EBS General Purpose (SSD)
+  ami: "ami-11aa8c74"
+  user: "ec2-user"
