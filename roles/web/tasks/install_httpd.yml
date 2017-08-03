@@ -1,2 +1,31 @@
 ---
 # Tasks to install the websrever software & configure it
+
+- name: Install httpd, php, and php-mysql
+  yum: name={{ item }} state=present
+  with_items:
+    - httpd
+    - php
+    - php-mysql
+
+
+- name: Install software delivery pipeline tools
+  yum: name={{ item }} state=present
+  with_items:
+    - git
+
+
+- name: Start firewalld
+  service: name=firewalld state=started enabled=yes
+
+
+- name: Open firewall to http
+  firewalld: port={{ http_port }}/tcp permanent=true state=enabled immediate=yes
+
+
+- name: Start/Enable httpd
+  service: name=httpd state=started enabled=yes
+
+
+- name: SELinux - Allow httpd to connect to DB 
+  seboolean: name=httpd_can_network_connect_db state=true persistent=yes
